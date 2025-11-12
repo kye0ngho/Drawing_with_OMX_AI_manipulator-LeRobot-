@@ -30,6 +30,8 @@ lerobot-find-port
 <img width="927" height="224" alt="Screenshot from 2025-11-12 08-53-48" src="https://github.com/user-attachments/assets/6b96595b-7ecf-42fe-ba57-437dc2ca8c10" />
 
 #### 사소한 주의사항! 중간에 OSError 발생 (detect 에러 ) 케이블을 바꿔서 해보는 것을 추천함. 
+<img width="927" height="224" alt="image" src="https://github.com/user-attachments/assets/9feb3374-dd17-4aba-9c21-c08e5641795c" />
+
 
 ```bash
 
