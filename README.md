@@ -23,19 +23,35 @@ cd lerobot
 lerobot-find-port
 ```
 ### 결과 예시.
-## Leader Arm
-<img width="927" height="224" alt="Screenshot from 2025-11-12 08-53-41" src="https://github.com/user-attachments/assets/eb47d23e-8d47-41c5-b93e-9c91987af08f" />
 
-## Follower Arm
-<img width="927" height="224" alt="Screenshot from 2025-11-12 08-53-48" src="https://github.com/user-attachments/assets/6b96595b-7ecf-42fe-ba57-437dc2ca8c10" />
+## Leader Arm (/dev/ttyACM1)
+
+<img width="927" height="224" alt="Screenshot from 2025-11-12 13-15-09" src="https://github.com/user-attachments/assets/576c0579-f0f0-46cf-ab68-8cea430f3f8c" />
+
+## Follower Arm (/dev/ttyACM0)
+
+<img width="927" height="224" alt="Screenshot from 2025-11-12 13-15-13" src="https://github.com/user-attachments/assets/7defd4ff-2806-4e0d-916c-8d0dc738b089" />
+
+
 
 #### 사소한 주의사항! 중간에 OSError 발생 (detect 에러 ) 케이블을 바꿔서 해보는 것을 추천함. 
-<img width="927" height="224" alt="image" src="https://github.com/user-attachments/assets/9feb3374-dd17-4aba-9c21-c08e5641795c" />
+
+<img width="927" height="224" alt="Screenshot from 2025-11-12 13-12-16" src="https://github.com/user-attachments/assets/c38234b3-c6ce-4027-b94f-a34317416944" />
+
+## PermissionError
+
+<img width="630" height="34" alt="Screenshot from 2025-11-12 13-23-08" src="https://github.com/user-attachments/assets/100f5b36-2166-47f2-80bc-89a873dd35eb" />
 
 
 ```bash
+#와일드 카드 이용해서 모든 포트에 대해 권한 부여
+sudo chmod 666 /dev/tty/ACM* 
+```
 
-# teleoperation code.
+
+### Teleopoeration Code
+
+```bash
 
 python -m lerobot.teleoperate \
     --robot.type=omx_follower \
