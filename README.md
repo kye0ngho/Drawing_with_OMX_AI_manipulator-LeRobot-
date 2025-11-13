@@ -179,12 +179,20 @@ arm controller 가 active 하지 못하는 오류 발생.
 ```bash
 # 처음부터 오류.
 
+ros2 launch open_manipulator_bringup omx_ai.launch.py
+
 # 르로봇과 동일하게 모터 11,12,13번이 나가있음.
 ```
 
 <img width="1340" height="285" alt="image" src="https://github.com/user-attachments/assets/7aaac09a-201d-40a1-a079-fa42d870c0e4" />
 
 인생...
+
+```bash
+ros2 launch open_manipulator_bringup omx_f_gazebo.launch.py
+# 가제보 launch
+```
+
 
 
 
