@@ -181,13 +181,16 @@ arm controller 가 active 하지 못하는 오류 발생.
 
 ros2 launch open_manipulator_bringup omx_ai.launch.py
 
-# 르로봇과 동일하게 모터 11,12,13번이 나가있음.
+# port 번호 넣는 곳에 저 node ID 를 넣음으로 해결
 ```
+
+https://github.com/user-attachments/assets/eb193879-3078-4c8e-aa53-bbd5d836cc49
+
 
 <img width="1340" height="285" alt="image" src="https://github.com/user-attachments/assets/7aaac09a-201d-40a1-a079-fa42d870c0e4" />
 
-인생...
 
+### Mujoco ( 공식 Document 에 MJCF 파일 존재)
 ```bash
 ros2 launch open_manipulator_bringup omx_f_gazebo.launch.py
 # 가제보 launch
