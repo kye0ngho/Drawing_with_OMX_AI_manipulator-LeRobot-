@@ -196,7 +196,32 @@ ros2 launch open_manipulator_bringup omx_f_gazebo.launch.py
 # 가제보 launch
 ```
 
+### 시뮬레이션으로 그림그리기. 
+
+```bash
+
+# 교수님 github 참고.
+
+# 클론
+git clone https://github.com/bareblackfoot/Drawing-with-OMX
+
+# 필요 패키지들 설치
+pip install -r requirements.txt
+
+# notebook 이 없다면 (선택사항 있으면 안 해도 괜찮음)
+pip install notebook
+
+# notebook 실행
+jupyter notebook notebook/drawing/drawing_omx.ipynb
+
+```
+
+stl 파일이 형식이 깨져서 다운받아지는 오류 발생 . 39byte밖에 안됨 그래서 mujoco 에서 못 띄움.
+
+```bash
+
+sudo apt-get update
+sudo apt-get install git-lfs
 
 
-
-
+```
