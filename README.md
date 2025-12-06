@@ -225,3 +225,19 @@ sudo apt-get install git-lfs
 
 
 ```
+
+
+### Physical_ai_server_bringup
+
+```bash
+#/home/nuri2/kyeongho/omx/open_manipulator/docker/physical_ai_tools/docker
+# 김경호 pc 기준 경로
+./container.sh enter
+
+ai_server
+
+#http://localhost로 url 열어서 확인.
+```
+
+
+
