@@ -239,5 +239,20 @@ ai_server
 #http://localhost로 url 열어서 확인.
 ```
 
+### 주피터 노트북 사용.
+
+```bash
+jupyter notebook notebook/drawing/drawing_omx.ipynb
+
+# 사소 오류들
+#1. urdf 와 assets 에 stl 파일이 두개 있을텐데 하나를 덮어써야함. 둘중 하나는 폭탄임.
+# cp /(받아오고 싶은 경로 pwd 로 경로 복붙 추천/omx/* (와일드 카드 이용 모든 파일 다 가져오기 ) . (현재 디렉토리에 (.)) 
+#2. XM430() 클래스가 없음. 실제로봇을 True 로 할 시.
+# (3) 오류는 아니지만 실수한 것.
+# pen 파일을 받아올 때 Touch_~~~ 이렇게 받아왔는데 경로에는 touch~~ 로 되어 있음.
+# mv Touc~ touch~ 로 수정할 것 
+ 
+
+```
 
 
