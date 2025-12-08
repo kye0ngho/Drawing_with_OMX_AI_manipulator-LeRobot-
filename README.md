@@ -256,3 +256,146 @@ jupyter notebook notebook/drawing/drawing_omx.ipynb
 ```
 
 
+### XM430 클래스가 없어서 객체 못 만드는 이슈 
+```bash
+import numpy as np
+import os
+from dynamixel_sdk import *
+
+class XM430:
+    def __init__(self):
+        # 기본 설정
+        # 윈도우라면 'COM3', 리눅스는 보통 '/dev/ttyUSB0' 또는 '/dev/ttyACM0'
+        self.DEVICENAME = '/dev/ttyACM0' 
+        self.BAUDRATE = 1000000
+        self.PROTOCOL_VERSION = 2.0
+        self.DXL_ID = [11, 12, 13, 14, 15]
+        
+        # 컨트롤 테이블 주소 (XM430-W350 기준)
+        self.ADDR_TORQUE_ENABLE = 64
+        self.ADDR_GOAL_POSITION = 116
+        self.ADDR_PRESENT_POSITION = 132
+        self.LEN_GOAL_POSITION = 4
+        self.LEN_PRESENT_POSITION = 4
+        
+        self.portHandler = None
+        self.packetHandler = None
+        self.groupSyncWrite = None
+        self.groupSyncRead = None
+        
+        self.dxl_present_position = []
+
+    def initialize(self):
+        # 포트 및 패킷 핸들러 초기화
+        self.portHandler = PortHandler(self.DEVICENAME)
+        self.packetHandler = PacketHandler(self.PROTOCOL_VERSION)
+        
+        # 포트 열기
+        if self.portHandler.openPort():
+            print("Succeeded to open the port")
+        else:
+            print("Failed to open the port")
+            # 포트 열기 실패 시 더 진행하지 않도록 종료하거나 에러 처리 필요
+            return
+
+        # 보드레이트 설정
+        if self.portHandler.setBaudRate(self.BAUDRATE):
+            print("Succeeded to change the baudrate")
+        else:
+            print("Failed to change the baudrate")
+            return
+            
+        # 토크 켜기
+        for dxl_id in self.DXL_ID:
+            self.packetHandler.write1ByteTxRx(self.portHandler, dxl_id, self.ADDR_TORQUE_ENABLE, 1)
+
+        # SyncWrite/Read 초기화
+        self.groupSyncWrite = GroupSyncWrite(self.portHandler, self.packetHandler, self.ADDR_GOAL_POSITION, self.LEN_GOAL_POSITION)
+        self.groupSyncRead = GroupSyncRead(self.portHandler, self.packetHandler, self.ADDR_PRESENT_POSITION, self.LEN_PRESENT_POSITION)
+        
+        for dxl_id in self.DXL_ID:
+            self.groupSyncRead.addParam(dxl_id)
+
+    def read(self):
+        # 현재 위치 읽기
+        dxl_comm_result = self.groupSyncRead.txRxPacket()
+        if dxl_comm_result != COMM_SUCCESS:
+            pass # 통신 실패 시 패스
+            
+        self.dxl_present_position = []
+        for dxl_id in self.DXL_ID:
+            # 데이터 읽기 확인
+            if self.groupSyncRead.isAvailable(dxl_id, self.ADDR_PRESENT_POSITION, self.LEN_PRESENT_POSITION):
+                pos = self.groupSyncRead.getData(dxl_id, self.ADDR_PRESENT_POSITION, self.LEN_PRESENT_POSITION)
+                # 32비트 부호있는 정수 처리
+                if pos > 0x7fffffff:
+                    pos -= 4294967296
+                self.dxl_present_position.append(pos)
+            else:
+                self.dxl_present_position.append(0)
+
+  #  def run_multi_motor(self, qpos_bytes, dxl_ids):
+        # 모터 움직이기 (SyncWrite)
+ #       self.groupSyncWrite.clearParam()
+ #       for i, dxl_id in enumerate(dxl_ids):
+            # 사용자의 메인 코드에서 변환된 바이트 배열을 그대로 파라미터로 추가
+ #           self.groupSyncWrite.addParam(dxl_id, qpos_bytes[i])
+
+ #       dxl_comm_result = self.groupSyncWrite.txPacket()
+ #       if dxl_comm_result != COMM_SUCCESS:
+ #           # 에러 발생 시 출력 (디버깅용)
+#            print(self.packetHandler.getTxRxResult(dxl_comm_result))
+  
+    def run_multi_motor(self, qpos_bytes, dxl_ids):
+        # 모터 움직이기 (SyncWrite)
+        self.groupSyncWrite.clearParam()
+
+        for i, dxl_id in enumerate(dxl_ids):
+            data = qpos_bytes[i]
+
+            # ★ numpy.int64 또는 일반 int → 4바이트 little-endian 변환 ★
+            if isinstance(data, (int, np.integer)):
+                v = int(data)
+                data = [
+                    v & 0xFF,
+                    (v >> 8) & 0xFF,
+                    (v >> 16) & 0xFF,
+                    (v >> 24) & 0xFF,
+                ]
+
+            # ★ numpy array일 경우 list로 변환
+            elif isinstance(data, np.ndarray):
+                data = data.tolist()
+
+            # ★ 리스트도 아니고 정수도 아니면 강제로 변환
+            elif not isinstance(data, list):
+                v = int(data)
+                data = [
+                    v & 0xFF,
+                    (v >> 8) & 0xFF,
+                    (v >> 16) & 0xFF,
+                    (v >> 24) & 0xFF,
+                ]
+
+            # SyncWrite에 파라미터 추가
+            self.groupSyncWrite.addParam(dxl_id, data)
+
+        # 패킷 전송
+        dxl_comm_result = self.groupSyncWrite.txPacket()
+        if dxl_comm_result != COMM_SUCCESS:
+            print(self.packetHandler.getTxRxResult(dxl_comm_result))
+
+
+    def close(self):
+        # 토크 끄기 및 포트 닫기
+        for dxl_id in self.DXL_ID:
+            self.packetHandler.write1ByteTxRx(self.portHandler, dxl_id, self.ADDR_TORQUE_ENABLE, 0)
+        self.portHandler.closePort()
+
+```
+
+```bash
+#이렇게 drawing 만들고 ipynb 에서
+sys.path.append(./notebook/drawing) 
+from motor import motor
+```
