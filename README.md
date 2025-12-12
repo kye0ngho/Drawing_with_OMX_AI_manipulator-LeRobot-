@@ -399,3 +399,27 @@ class XM430:
 sys.path.append(./notebook/drawing) 
 from motor import motor
 ```
+
+
+
+### 피카소마냥 그리기
+
+```bash
+
+https://drive.usercontent.google.com/download?id=1ao1ovG1Qtx4b7EoskHXmi2E9rp5CHLcZ&authuser=1
+
+#얘를 다운로드 하신다음에 원하는 파일에 넣기 .
+
+# 매우 주의 사항!!! 그렇게 다운로드 한 것은 로컬 파일에 있는 것이기 때문에 도커를 들어가면 당연히 반영 안됨.
+# 컨테이너 시작시에 로컬 폴더 마운트 (공유)를 해주어야 함.
+
+cd kyeongho
+git clone https://github.com/yael-vinker/CLIPasso
+# 여기에 U2NET_ 의 하위 디렉토리 saved_models 에 다운 받은 pth 파일 넣어주기.
+
+docker run --name clipsketch -it \
+  -v ~/kyeongho/CLIPasso:/home/CLIPasso \
+  yaelvinker/clipasso_docker /bin/bash
+
+# 그 이후 그 로컬 디렉토리 마운트 해서 컨테이너 열기. 정상적으로 했으면 saved_models 에 pth 파일이 있어야 함. 있으면 성공.
+```
