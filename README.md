@@ -459,4 +459,7 @@ https://github.com/yael-vinker/CLIPasso
   </g>
 </svg>
 
+# SVG to PNG to Contour
+<img width="937" height="1127" alt="image" src="https://github.com/user-attachments/assets/ac756943-8a85-4615-8163-f2f4b2e6237f" />
+
 
