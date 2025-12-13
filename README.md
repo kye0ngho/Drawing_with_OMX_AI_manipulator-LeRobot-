@@ -423,3 +423,40 @@ docker run --name clipsketch -it \
 
 # 그 이후 그 로컬 디렉토리 마운트 해서 컨테이너 열기. 정상적으로 했으면 saved_models 에 pth 파일이 있어야 함. 있으면 성공.
 ```
+
+### 참고사항 
+```bash
+https://github.com/yael-vinker/CLIPasso
+```
+
+# 입력
+
+<img width="224" height="224" alt="input" src="https://github.com/user-attachments/assets/a3db219e-8a38-4abc-8bf0-6159117fdb69" />
+
+# 결과 
+
+![best_iter](https://github.com/user-attachments/assets/53f1badb-42c2-47fa-a29f-fc9fd94fa9a8)
+<?xml version="1.0" ?>
+<svg height="224" version="1.1" width="224" xmlns="http://www.w3.org/2000/svg">
+  <defs/>
+  <g>
+    <path d="M 18.209232330322266 169.1042022705078 C 78.95388793945312 121.47747039794922 -11.650810241699219 214.99600219726562 59.67234802246094 114.02416229248047" fill="none" stroke="rgb(0, 0, 0)" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="1.0" stroke-width="3.0"/>
+    <path d="M 80.27388763427734 48.09334182739258 C -3.532323122024536 32.379756927490234 55.6351203918457 52.78072738647461 69.98089599609375 36.48112869262695" fill="none" stroke="rgb(0, 0, 0)" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="1.0" stroke-width="3.0"/>
+    <path d="M 152.29454040527344 189.23500061035156 C 179.79861450195312 194.66543579101562 157.01480102539062 103.08547973632812 164.8557586669922 186.95217895507812" fill="none" stroke="rgb(0, 0, 0)" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="1.0" stroke-width="3.0"/>
+    <path d="M 60.5749397277832 84.2718734741211 C 49.2751579284668 132.21238708496094 73.67720031738281 130.54989624023438 134.24954223632812 127.61762237548828" fill="none" stroke="rgb(0, 0, 0)" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="1.0" stroke-width="3.0"/>
+    <path d="M 170.61309814453125 111.61530303955078 C 155.4844970703125 151.69691467285156 129.3553466796875 107.98313903808594 167.69366455078125 165.24713134765625" fill="none" stroke="rgb(0, 0, 0)" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="1.0" stroke-width="3.0"/>
+    <path d="M 89.94883728027344 58.02003479003906 C 23.82308578491211 46.82792282104492 72.07974243164062 8.909611701965332 12.015861511230469 72.64964294433594" fill="none" stroke="rgb(0, 0, 0)" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="1.0" stroke-width="3.0"/>
+    <path d="M 35.62064743041992 43.636390686035156 C 118.87177276611328 35.704776763916016 41.75495910644531 56.61265563964844 33.470760345458984 36.274391174316406" fill="none" stroke="rgb(0, 0, 0)" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="1.0" stroke-width="3.0"/>
+    <path d="M 73.23180389404297 69.14946746826172 C 145.45846557617188 107.17733764648438 128.4459686279297 61.363162994384766 186.71839904785156 112.02377319335938" fill="none" stroke="rgb(0, 0, 0)" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="1.0" stroke-width="3.0"/>
+    <path d="M 60.586063385009766 86.01892852783203 C 68.26448059082031 33.87427520751953 -17.20545196533203 32.08706283569336 85.03886413574219 54.7256965637207" fill="none" stroke="rgb(0, 0, 0)" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="1.0" stroke-width="3.0"/>
+    <path d="M 150.02415466308594 111.92887115478516 C 117.14411926269531 186.27182006835938 145.03736877441406 146.22894287109375 99.24696350097656 186.61366271972656" fill="none" stroke="rgb(0, 0, 0)" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="1.0" stroke-width="3.0"/>
+    <path d="M 95.61011505126953 60.17140197753906 C 51.264583587646484 68.05863952636719 91.76671600341797 64.69751739501953 95.82196044921875 69.42440795898438" fill="none" stroke="rgb(0, 0, 0)" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="1.0" stroke-width="3.0"/>
+    <path d="M 168.89566040039062 163.17489624023438 C 147.885009765625 107.52835083007812 187.40989685058594 128.8679962158203 171.30445861816406 102.13851928710938" fill="none" stroke="rgb(0, 0, 0)" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="1.0" stroke-width="3.0"/>
+    <path d="M 102.68791198730469 78.68605041503906 C 87.17539978027344 61.66060256958008 91.49240112304688 85.23380279541016 46.06493377685547 51.54952621459961" fill="none" stroke="rgb(0, 0, 0)" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="1.0" stroke-width="3.0"/>
+    <path d="M 74.66717529296875 65.21333312988281 C 36.263980865478516 28.132320404052734 35.662113189697266 89.7934341430664 12.388283729553223 67.86735534667969" fill="none" stroke="rgb(0, 0, 0)" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="1.0" stroke-width="3.0"/>
+    <path d="M 178.6384735107422 108.63597106933594 C 210.6803741455078 109.0975341796875 199.21446228027344 136.8448944091797 219.4504852294922 139.74623107910156" fill="none" stroke="rgb(0, 0, 0)" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="1.0" stroke-width="3.0"/>
+    <path d="M 23.766948699951172 67.53572845458984 C 9.937179565429688 92.41603088378906 -3.0705254077911377 66.83687591552734 40.48513412475586 50.04281997680664" fill="none" stroke="rgb(0, 0, 0)" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="1.0" stroke-width="3.0"/>
+  </g>
+</svg>
+
+
